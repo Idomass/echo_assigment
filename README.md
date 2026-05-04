@@ -1,58 +1,51 @@
 # Echo assignment
 ## Summary & Analysis
-| | `redis:7-bookworm` | `redis:7-alpine-secured` | Δ |
+| | `redis:7-bookworm` | `redis:7-bookworm-secured` | Δ |
 |---|---|---|---|
-| **Image size** | 175 MB | 41.4 MB | -133.6 MB |
-| **Vulnerabilities** | 237 | 5 | −232 |
+| **Total findings** | 237 | 4 | -233 |
+| **Critical** | 12 | 2 | −10 |
+| **High** | 68 | 0 | −68 |
+| **Medium** | 80 | 0 | −80 |
+| **Low** | 12 | 2 | −10 |
+| **Negligible** | 55 | 0 | −55 |
+| **Won't fix** | 143 | 0 | −143 |
+| **Image size** | 175 MB | 42.5MB MB | -132.5 MB |
+
+The 2 new critical vulnerabilities are highly likely to be false-positives raised after the docker-slim process.
 
 ## Validating Functionality
 Testing was implemented using a combination of claude code + gemini.
 See `test-plan.md` for testing strategy.
 
 ## Vulnerability report
-138 Debian-only CVEs eliminated by base swap; 94 Go-stdlib CVEs eliminated by gosu removal.
+94 Go-stdlib CVEs eliminated by gosu removal, and branch fixing in `docker-entrypoint.sh`.
 
-For a full report, look at `reports/` folder.
-For the remaining risks, see `Residual Risk Assessment`
+For a full vulnerability report, before and after, look at `reports/` folder.
+For the remaining risks, see `Residual Risk Assessment`.
 
 ## Cleaning the image
-For a full version and unimplemented methods - see `log.md`.
+For a full version and unimplemented methods - see both `log.md` and `log2.md`.
 
-### Method 1: Alternative OS layer
-Switching to `redis:7-alpine` was an easy solution, reducing the number of vulnerabilities significantly.
-When checking about a "slim" version of `bookworm` image, I found out about `alpine`.
+### Method 0: Using `docker-slim`
+This is the nuclear option, aiming to get a "perfect" result regarding removing vulnerable components.
+This method is costly considering implementation, because it needs a almost-perfect simulation of the container user.
 
-| | `redis:7-bookworm` | `redis:7-alpine` | Δ |
-|---|---|---|---|
-| **Total findings** | 237 | 99 | −138 (−58%) |
-| **Critical** | 12 | 10 | −2 |
-| **High** | 68 | 46 | −22 |
-| **Medium** | 80 | 38 | −42 |
-| **Low** | 12 | 5 | −7 |
-| **Negligible** | 55 | 0 | −55 |
-| **Won't fix** | 143 | 5 | −138 |
-| **Image size** | 175 MB | 61 MB | −114 MB (−65%) |
+I made it run with redis tests, but missed the "administrative" paths that might include logging in, changing permissions manually and installing other packages.
 
-#### musl vs glibc
-This is the main reason so many vulnerabilities were removed.
-musl is the secured variant of glibc, and a smaller one.
-
-Less code, less vulnerabilities.
-
-#### Potential downside
-Performance, shell and DNS sequencing are part of the changes I read online about.
-In this challenge I chose the `alpine` container since the goal is to reduce surface - but in real world applications these changes might be a dealbreaker and should be considered thoroughly.
-
-### Rescanning
-Left us with 99 vulnerabilities, 94 sourced in `gosu` Go 1.18.2 library.
-
-### Method 5: Removing `gosu`
-This has the risk of breaking compatibility, even though it is a small change.
+### Method 5: Skipping a branch and removing `gosu`
+`gosu` is used in the `docker-entrypoint.sh` to change from root to redis.
+By enforcing `USER "redis"` in the Dockerfile, this branch never reaches, and `gosu` can be removed, since there is no other users to it.
 
 In order to make this work, I had to `chown` the data directory, and force the docker into using user `redis`.
 
 ## Challenges and lessons learned
-### Unknown product - `redis`
+### Maximilist approach breaks stuff
+Container usage extends beyond the binary it wraps, and missing this was a major oversight on my part doing this exercise.
+I attempted to complete it with a maximilist approach ("Everything that is unused can be purged"), but my definition of a "working container" was minimized to "redis is working and containerized".
+
+Next time, it's better to consider patching and rebuilding.
+
+### Dealing with unknown system - `redis`
 Before the challenge, I only knew `redis` by name and high-level functionality.
 I found making the tests much harder than hardening the image, probably because defensive lines of thinking are easier for me.
 Understanding which tests I should run, and what `redis` is, was a main challenge for me - and in the era of AI it is important to differentiate actual information from hallucinations.
@@ -60,37 +53,24 @@ Understanding which tests I should run, and what `redis` is, was a main challeng
 Testing was especially difficult - since it's hard to map what a "working" state for a product I don't know is.
 I experimented with AI implementation, but honestly still not satisfied with the results and further work is required.
 
-### Architecture is stronger than specific mitigations
-Starting the mission, my mind ran with possible solutions for each CVE: patching, rebuilding and other "heavy-lifting" solutions for hardening the image.
-
-But instead of rebuilding everything, I discovered the `alpine` variation of `redis` - which already does 90% of the work for me.
-
-This reminded me that architectural solutions (such as changing the base layer) are usually much stronger than patches or specific mitigations.
-
 ## Residual Risk Assessment
+### Broken functionalities
+As mentioned in the bullet above, I broke the container while keeping `redis` functioning.
+This can be managed with adding an extra layer to the docker slim prcoess, named "admin_tests", that records the admin usage of the container.
+
 ### Remaining vulnerabilities
-After Methods 1 and 5, 5 findings remain — all very low EPSS (<0.1%):
+After Methods 0 and 5, 4 findings remain — 2 are scanner false-positives, 2 are real Redis upstream issues (both Low, EPSS <0.1%):
 
-| # | Package(s) | CVE | Severity | EPSS | Source |
+| # | Package | CVE | Severity | EPSS | Source / Note |
 |---|---|---|---|---|---|
-| 1 | `busybox`, `busybox-binsh`, `ssl_client` (1.37.0-r14) | CVE-2025-60876 | Medium | <0.1% | Alpine base (BusyBox) |
-| 2 | `redis` 7.4.8 | CVE-2025-49112 | Low | <0.1% | Redis upstream |
-| 3 | `redis` 7.4.8 | CVE-2025-46686 | Low | <0.1% | Redis upstream |
-
-This leaves us with 3 distinct CVEs.
+| 1| redis |  7.4.8 |      binary  | CVE-2022-0543 |   Critical  94.4% (99th) |   99.8   (kev)  |
+| 2| redis |  7.4.8 |      binary |  CVE-2022-3734  | Critical  0.5% (65th)    0.4
+| 3 | `redis` 7.4.8 | CVE-2025-49112 | Low | <0.1% | Redis upstream |
+| 4 | `redis` 7.4.8 | CVE-2025-46686 | Low | <0.1% | Redis upstream |
 
 ### Fixes and workarounds
 The remaining vulnerabilities are low RISK, but no fixes found by grype for them.
 
-**CVE-2025-60876 (BusyBox)**
-Wasn't fixed in upstream yet, but is probably unreachable because `redis` doesn't invoke `wget` which is required for this exploitation.
-
 **CVE-2025-49112 / CVE-2025-46686 (Redis 7.4.8)**
-Should build from source the redis code and bundle to a custom container.
-Will remove `alpine` dependence, but will add maintence burden.
-
-### Prioritized fix order
-Ranked by my own assesment:
-
-1. **CVE-2025-49112 / CVE-2025-46686** - High payoff for building redis from source.
-2. **CVE-2025-60876** - Not exploitable in current configuration
+Should build from source the redis code with a custom fixes.
+Both of these vulnerabilities are in redis source code, and weren't fixed yet.

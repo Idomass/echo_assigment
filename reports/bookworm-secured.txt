@@ -1,0 +1,5 @@
+NAME   INSTALLED  TYPE    VULNERABILITY   SEVERITY  EPSS           RISK          
+redis  7.4.8      binary  CVE-2022-0543   Critical  94.4% (99th)   99.8   (kev)  
+redis  7.4.8      binary  CVE-2022-3734   Critical  0.5% (65th)    0.4           
+redis  7.4.8      binary  CVE-2025-49112  Low       < 0.1% (24th)  < 0.1         
+redis  7.4.8      binary  CVE-2025-46686  Low       < 0.1% (14th)  < 0.1

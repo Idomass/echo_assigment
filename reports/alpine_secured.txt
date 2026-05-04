@@ -1,6 +1,0 @@
-NAME           INSTALLED   TYPE    VULNERABILITY   SEVERITY  EPSS           RISK   
-busybox        1.37.0-r14  apk     CVE-2025-60876  Medium    < 0.1% (15th)  < 0.1  
-busybox-binsh  1.37.0-r14  apk     CVE-2025-60876  Medium    < 0.1% (15th)  < 0.1  
-ssl_client     1.37.0-r14  apk     CVE-2025-60876  Medium    < 0.1% (15th)  < 0.1  
-redis          7.4.8       binary  CVE-2025-49112  Low       < 0.1% (24th)  < 0.1  
-redis          7.4.8       binary  CVE-2025-46686  Low       < 0.1% (14th)  < 0.1

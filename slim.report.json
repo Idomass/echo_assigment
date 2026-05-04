@@ -1,0 +1,503 @@
+{
+  "document": "doc.report.command",
+  "version": "ov/command/slim/1.1",
+  "engine": "linux/amd64|ALP|x.1.42.2|29e62e7836de7b1004607c51c502537ffe1969f0|2025-01-16_07:48:54AM|x",
+  "containerized": false,
+  "host_distro": {
+    "name": "Ubuntu",
+    "version": "20.04",
+    "display_name": "Ubuntu 20.04.6 LTS"
+  },
+  "type": "slim",
+  "state": "done",
+  "target_reference": "redis:7-bookworm-tmp",
+  "system": {
+    "type": "Linux",
+    "release": "6.6.87.2-microsoft-standard-WSL2",
+    "distro": {
+      "name": "Debian GNU/Linux",
+      "version": "12",
+      "display_name": "Debian GNU/Linux 12 (bookworm)"
+    }
+  },
+  "source_image": {
+    "identity": {
+      "id": "sha256:7fa9783c8daaec17dac94539b4459088511520b91d4e23b38168e311e41288a2",
+      "tags": [
+        "7-alpine-secured",
+        "7-bookworm-tmp"
+      ],
+      "names": [
+        "redis:7-alpine-secured",
+        "redis:7-bookworm-tmp"
+      ]
+    },
+    "size": 117066358,
+    "size_human": "117 MB",
+    "create_time": "2026-05-04T21:12:56Z",
+    "runtime_name": "docker",
+    "runtime_version": "26.1.3",
+    "architecture": "amd64",
+    "user": "redis",
+    "exposed_ports": [
+      "6379/tcp"
+    ],
+    "os": "linux",
+    "volumes": [
+      "/data"
+    ],
+    "env_vars": [
+      "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+      "GOSU_VERSION=1.17",
+      "REDIS_VERSION=7.4.8",
+      "REDIS_DOWNLOAD_URL=http://download.redis.io/releases/redis-7.4.8.tar.gz",
+      "REDIS_DOWNLOAD_SHA=f6773cb7d63be236c59c2917a82f1f08e47b77d89b2f0c9f53becb22b8ea4172"
+    ],
+    "container_entry": {
+      "exe_path": ""
+    }
+  },
+  "minified_image_size": 42514155,
+  "minified_image_size_human": "42 MB",
+  "minified_image": "redis:7-bookworm-secured",
+  "minified_image_id": "sha256:0e79f7813b07f0211a8847d24ad13e9da2822cdce7a343b185c9b02df053ba24",
+  "minified_image_digest": "sha256:84dfb804168edd8cd3cc9e7c6ce18cc07ba6549e553bd97d8773d26c0f069282",
+  "minified_image_has_data": true,
+  "minified_by": 2.753585435250918,
+  "artifact_location": "/home/idomass/.local/bin/.mint-state/images/7fa9783c8daaec17dac94539b4459088511520b91d4e23b38168e311e41288a2/artifacts",
+  "container_report_name": "creport.json",
+  "seccomp_profile_name": "redis-seccomp.json",
+  "apparmor_profile_name": "redis-apparmor-profile",
+  "image_stack": [
+    {
+      "is_top_image": false,
+      "id": "sha256:7ceda270a3137de18c0b3aff75fa0002faa1c2a87e2b25e86978a1c3f20b3b78",
+      "full_name": "redis:7-bookworm",
+      "repo_name": "redis",
+      "version_tag": "7-bookworm",
+      "raw_tags": [
+        "redis:7-bookworm"
+      ],
+      "create_time": "2026-04-22T01:34:52Z",
+      "new_size": 117066358,
+      "new_size_human": "117 MB",
+      "instructions": [
+        {
+          "type": "RUN",
+          "time": "2026-04-21T00:00:00Z",
+          "is_nop": false,
+          "is_exec_form": true,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 74826875,
+          "size_human": "75 MB",
+          "command_snippet": "RUN []",
+          "command_all": "RUN []",
+          "system_commands": [
+            "[]"
+          ],
+          "comment": "debuerreotype 0.17",
+          "inst_set_time_bucket": "2026-04-21T03:00:00+03:00",
+          "inst_set_time_index": 0,
+          "inst_set_time_reverse_index": 2
+        },
+        {
+          "type": "RUN",
+          "time": "2026-04-22T01:33:57Z",
+          "is_nop": false,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 4302,
+          "size_human": "4.3 kB",
+          "command_snippet": "RUN set -eux; \tgroupadd -r -g 999 redis; \tus...",
+          "command_all": "RUN set -eux; \tgroupadd -r -g 999 redis; \tuseradd -r -g redis -u 999 redis",
+          "system_commands": [
+            "set -eux",
+            "groupadd -r -g 999 redis",
+            "useradd -r -g redis -u 999 redis"
+          ],
+          "comment": "buildkit.dockerfile.v0",
+          "is_buildkit_instruction": true,
+          "inst_set_time_bucket": "2026-04-22T04:30:00+03:00",
+          "inst_set_time_index": 1,
+          "inst_set_time_reverse_index": 1
+        },
+        {
+          "type": "RUN",
+          "time": "2026-04-22T01:33:58Z",
+          "is_nop": false,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 5084,
+          "size_human": "5.1 kB",
+          "command_snippet": "RUN set -eux; \tapt-get update; \tapt-get inst...",
+          "command_all": "RUN set -eux; \tapt-get update; \tapt-get install -y --no-install-recommends \t\ttzdata \t; \trm -rf /var/lib/apt/lists/*",
+          "system_commands": [
+            "set -eux",
+            "apt-get update",
+            "apt-get install -y --no-install-recommends tzdata",
+            "rm -rf /var/lib/apt/lists/*"
+          ],
+          "comment": "buildkit.dockerfile.v0",
+          "is_buildkit_instruction": true,
+          "inst_set_time_bucket": "2026-04-22T04:30:00+03:00",
+          "inst_set_time_index": 1,
+          "inst_set_time_reverse_index": 1
+        },
+        {
+          "type": "ENV",
+          "time": "2026-04-22T01:34:08Z",
+          "is_nop": false,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 0,
+          "params": "GOSU_VERSION=1.17",
+          "command_snippet": "ENV GOSU_VERSION=1.17",
+          "command_all": "ENV GOSU_VERSION=1.17",
+          "comment": "buildkit.dockerfile.v0",
+          "is_buildkit_instruction": true,
+          "inst_set_time_bucket": "2026-04-22T04:30:00+03:00",
+          "inst_set_time_index": 1,
+          "inst_set_time_reverse_index": 1
+        },
+        {
+          "type": "RUN",
+          "time": "2026-04-22T01:34:08Z",
+          "is_nop": false,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 4122765,
+          "size_human": "4.1 MB",
+          "command_snippet": "RUN set -eux; \tsavedAptMark=\"$(apt-mark show...",
+          "command_all": "RUN set -eux; \tsavedAptMark=\"$(apt-mark showmanual)\"; \tapt-get update; \tapt-get install -y --no-install-recommends ca-certificates gnupg wget; \trm -rf /var/lib/apt/lists/*; \tarch=\"$(dpkg --print-architecture | awk -F- '{ print $NF }')\"; \tcase \"$arch\" in \t\t'amd64') url='https://github.com/tianon/gosu/releases/download/1.17/gosu-amd64'; sha256='bbc4136d03ab138b1ad66fa4fc051bafc6cc7ffae632b069a53657279a450de3' ;; \t\t'arm64') url='https://github.com/tianon/gosu/releases/download/1.17/gosu-arm64'; sha256='c3805a85d17f4454c23d7059bcb97e1ec1af272b90126e79ed002342de08389b' ;; \t\t'armel') url='https://github.com/tianon/gosu/releases/download/1.17/gosu-armel'; sha256='f9969910fa141140438c998cfa02f603bf213b11afd466dcde8fa940e700945d' ;; \t\t'i386') url='https://github.com/tianon/gosu/releases/download/1.17/gosu-i386'; sha256='087dbb8fe479537e64f9c86fa49ff3b41dee1cbd28739a19aaef83dc8186b1ca' ;; \t\t'mips64el') url='https://github.com/tianon/gosu/releases/download/1.17/gosu-mips64el'; sha256='87140029d792595e660be0015341dfa1c02d1181459ae40df9f093e471d75b70' ;; \t\t'ppc64el') url='https://github.com/tianon/gosu/releases/download/1.17/gosu-ppc64el'; sha256='1891acdcfa70046818ab6ed3c52b9d42fa10fbb7b340eb429c8c7849691dbd76' ;; \t\t'riscv64') url='https://github.com/tianon/gosu/releases/download/1.17/gosu-riscv64'; sha256='38a6444b57adce135c42d5a3689f616fc7803ddc7a07ff6f946f2ebc67a26ba6' ;; \t\t's390x') url='https://github.com/tianon/gosu/releases/download/1.17/gosu-s390x'; sha256='69873bab588192f760547ca1f75b27cfcf106e9f7403fee6fd0600bc914979d0' ;; \t\t'armhf') url='https://github.com/tianon/gosu/releases/download/1.17/gosu-armhf'; sha256='e5866286277ff2a2159fb9196fea13e0a59d3f1091ea46ddb985160b94b6841b' ;; \t\t*) echo >&2 \"error: unsupported gosu architecture: '$arch'\"; exit 1 ;; \tesac; \twget -O /usr/local/bin/gosu.asc \"$url.asc\"; \twget -O /usr/local/bin/gosu \"$url\"; \techo \"$sha256 */usr/local/bin/gosu\" | sha256sum -c -; \texport GNUPGHOME=\"$(mktemp -d)\"; \tgpg --batch --keyserver hkps://keys.openpgp.org --recv-keys B42F6819007F00F88E364FD4036A9C25BF357DD4; \tgpg --batch --verify /usr/local/bin/gosu.asc /usr/local/bin/gosu; \tgpgconf --kill all; \trm -rf \"$GNUPGHOME\" /usr/local/bin/gosu.asc; \tapt-mark auto '.*' > /dev/null; \t[ -z \"$savedAptMark\" ] || apt-mark manual $savedAptMark > /dev/null; \tapt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false; \tchmod +x /usr/local/bin/gosu; \tgosu --version; \tgosu nobody true",
+          "system_commands": [
+            "set -eux",
+            "savedAptMark=\"$(apt-mark showmanual)\"",
+            "apt-get update",
+            "apt-get install -y --no-install-recommends ca-certificates gnupg wget",
+            "rm -rf /var/lib/apt/lists/*",
+            "arch=\"$(dpkg --print-architecture | awk -F- '{ print $NF }')\"",
+            "case \"$arch\" in 'amd64') url='https://github.com/tianon/gosu/releases/download/1.17/gosu-amd64'",
+            "sha256='bbc4136d03ab138b1ad66fa4fc051bafc6cc7ffae632b069a53657279a450de3'",
+            "",
+            "'arm64') url='https://github.com/tianon/gosu/releases/download/1.17/gosu-arm64'",
+            "sha256='c3805a85d17f4454c23d7059bcb97e1ec1af272b90126e79ed002342de08389b'",
+            "",
+            "'armel') url='https://github.com/tianon/gosu/releases/download/1.17/gosu-armel'",
+            "sha256='f9969910fa141140438c998cfa02f603bf213b11afd466dcde8fa940e700945d'",
+            "",
+            "'i386') url='https://github.com/tianon/gosu/releases/download/1.17/gosu-i386'",
+            "sha256='087dbb8fe479537e64f9c86fa49ff3b41dee1cbd28739a19aaef83dc8186b1ca'",
+            "",
+            "'mips64el') url='https://github.com/tianon/gosu/releases/download/1.17/gosu-mips64el'",
+            "sha256='87140029d792595e660be0015341dfa1c02d1181459ae40df9f093e471d75b70'",
+            "",
+            "'ppc64el') url='https://github.com/tianon/gosu/releases/download/1.17/gosu-ppc64el'",
+            "sha256='1891acdcfa70046818ab6ed3c52b9d42fa10fbb7b340eb429c8c7849691dbd76'",
+            "",
+            "'riscv64') url='https://github.com/tianon/gosu/releases/download/1.17/gosu-riscv64'",
+            "sha256='38a6444b57adce135c42d5a3689f616fc7803ddc7a07ff6f946f2ebc67a26ba6'",
+            "",
+            "'s390x') url='https://github.com/tianon/gosu/releases/download/1.17/gosu-s390x'",
+            "sha256='69873bab588192f760547ca1f75b27cfcf106e9f7403fee6fd0600bc914979d0'",
+            "",
+            "'armhf') url='https://github.com/tianon/gosu/releases/download/1.17/gosu-armhf'",
+            "sha256='e5866286277ff2a2159fb9196fea13e0a59d3f1091ea46ddb985160b94b6841b'",
+            "",
+            "*) echo >&2 \"error: unsupported gosu architecture: '$arch'\"",
+            "exit 1",
+            "",
+            "esac",
+            "wget -O /usr/local/bin/gosu.asc \"$url.asc\"",
+            "wget -O /usr/local/bin/gosu \"$url\"",
+            "echo \"$sha256 */usr/local/bin/gosu\" | sha256sum -c -",
+            "export GNUPGHOME=\"$(mktemp -d)\"",
+            "gpg --batch --keyserver hkps://keys.openpgp.org --recv-keys B42F6819007F00F88E364FD4036A9C25BF357DD4",
+            "gpg --batch --verify /usr/local/bin/gosu.asc /usr/local/bin/gosu",
+            "gpgconf --kill all",
+            "rm -rf \"$GNUPGHOME\" /usr/local/bin/gosu.asc",
+            "apt-mark auto '.*' > /dev/null",
+            "[ -z \"$savedAptMark\" ] || apt-mark manual $savedAptMark > /dev/null",
+            "apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false",
+            "chmod +x /usr/local/bin/gosu",
+            "gosu --version",
+            "gosu nobody true"
+          ],
+          "comment": "buildkit.dockerfile.v0",
+          "is_buildkit_instruction": true,
+          "inst_set_time_bucket": "2026-04-22T04:30:00+03:00",
+          "inst_set_time_index": 1,
+          "inst_set_time_reverse_index": 1
+        },
+        {
+          "type": "ENV",
+          "time": "2026-04-22T01:34:08Z",
+          "is_nop": false,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 0,
+          "params": "REDIS_VERSION=7.4.8",
+          "command_snippet": "ENV REDIS_VERSION=7.4.8",
+          "command_all": "ENV REDIS_VERSION=7.4.8",
+          "comment": "buildkit.dockerfile.v0",
+          "is_buildkit_instruction": true,
+          "inst_set_time_bucket": "2026-04-22T04:30:00+03:00",
+          "inst_set_time_index": 1,
+          "inst_set_time_reverse_index": 1
+        },
+        {
+          "type": "ENV",
+          "time": "2026-04-22T01:34:08Z",
+          "is_nop": false,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 0,
+          "params": "REDIS_DOWNLOAD_URL=http://download.redis.io/releases/redis-7.4.8.tar.gz",
+          "command_snippet": "ENV REDIS_DOWNLOAD_URL=http://download.redis...",
+          "command_all": "ENV REDIS_DOWNLOAD_URL=http://download.redis.io/releases/redis-7.4.8.tar.gz",
+          "comment": "buildkit.dockerfile.v0",
+          "is_buildkit_instruction": true,
+          "inst_set_time_bucket": "2026-04-22T04:30:00+03:00",
+          "inst_set_time_index": 1,
+          "inst_set_time_reverse_index": 1
+        },
+        {
+          "type": "ENV",
+          "time": "2026-04-22T01:34:08Z",
+          "is_nop": false,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 0,
+          "params": "REDIS_DOWNLOAD_SHA=f6773cb7d63be236c59c2917a82f1f08e47b77d89b2f0c9f53becb22b8ea4172",
+          "command_snippet": "ENV REDIS_DOWNLOAD_SHA=f6773cb7d63be236c59c2...",
+          "command_all": "ENV REDIS_DOWNLOAD_SHA=f6773cb7d63be236c59c2917a82f1f08e47b77d89b2f0c9f53becb22b8ea4172",
+          "comment": "buildkit.dockerfile.v0",
+          "is_buildkit_instruction": true,
+          "inst_set_time_bucket": "2026-04-22T04:30:00+03:00",
+          "inst_set_time_index": 1,
+          "inst_set_time_reverse_index": 1
+        },
+        {
+          "type": "RUN",
+          "time": "2026-04-22T01:34:52Z",
+          "is_nop": false,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 38106671,
+          "size_human": "38 MB",
+          "command_snippet": "RUN set -eux; \t\tsavedAptMark=\"$(apt-mark sho...",
+          "command_all": "RUN set -eux; \t\tsavedAptMark=\"$(apt-mark showmanual)\"; \tapt-get update; \tapt-get install -y --no-install-recommends \t\tca-certificates \t\twget \t\t\t\tdpkg-dev \t\tgcc \t\tlibc6-dev \t\tlibssl-dev \t\tmake \t; \trm -rf /var/lib/apt/lists/*; \t\twget -O redis.tar.gz \"$REDIS_DOWNLOAD_URL\"; \techo \"$REDIS_DOWNLOAD_SHA *redis.tar.gz\" | sha256sum -c -; \tmkdir -p /usr/src/redis; \ttar -xzf redis.tar.gz -C /usr/src/redis --strip-components=1; \trm redis.tar.gz; \t\tgrep -E '^ *createBoolConfig[(]\"protected-mode\",.*, *1 *,.*[)],$' /usr/src/redis/src/config.c; \tsed -ri 's!^( *createBoolConfig[(]\"protected-mode\",.*, *)1( *,.*[)],)$!\\10\\2!' /usr/src/redis/src/config.c; \tgrep -E '^ *createBoolConfig[(]\"protected-mode\",.*, *0 *,.*[)],$' /usr/src/redis/src/config.c; \t\tgnuArch=\"$(dpkg-architecture --query DEB_BUILD_GNU_TYPE)\"; \textraJemallocConfigureFlags=\"--build=$gnuArch\"; \tdpkgArch=\"$(dpkg --print-architecture)\"; \tcase \"${dpkgArch##*-}\" in \t\tamd64 | i386 | x32) extraJemallocConfigureFlags=\"$extraJemallocConfigureFlags --with-lg-page=12\" ;; \t\t*) extraJemallocConfigureFlags=\"$extraJemallocConfigureFlags --with-lg-page=16\" ;; \tesac; \textraJemallocConfigureFlags=\"$extraJemallocConfigureFlags --with-lg-hugepage=21\"; \tgrep -F 'cd jemalloc && \\\n\t./configure ' /usr/src/redis/deps/Makefile; \tsed -ri 's!cd jemalloc && \\\n\t./configure !&'\"$extraJemallocConfigureFlags\"' !' /usr/src/redis/deps/Makefile; \tgrep -F \"cd jemalloc && \\\n\t./configure $extraJemallocConfigureFlags \" /usr/src/redis/deps/Makefile; \t\texport BUILD_TLS=yes; \tmake -C /usr/src/redis -j \"$(nproc)\" all; \tmake -C /usr/src/redis install; \t\tserverMd5=\"$(md5sum /usr/local/bin/redis-server | cut -d' ' -f1)\"; export serverMd5; \tfind /usr/local/bin/redis* -maxdepth 0 \t\t-type f -not -name redis-server \t\t-exec sh -eux -c ' \t\t\tmd5=\"$(md5sum \"$1\" | cut -d\" \" -f1)\"; \t\t\ttest \"$md5\" = \"$serverMd5\"; \t\t' -- '{}' ';' \t\t-exec ln -svfT 'redis-server' '{}' ';' \t; \t\trm -r /usr/src/redis; \t\tapt-mark auto '.*' > /dev/null; \t[ -z \"$savedAptMark\" ] || apt-mark manual $savedAptMark > /dev/null; \tfind /usr/local -type f -executable -exec ldd '{}' ';' \t\t| awk '/=>/ { so = $(NF-1); if (index(so, \"/usr/local/\") == 1) { next }; gsub(\"^/(usr/)?\", \"\", so); printf \"*%s\\n\", so }' \t\t| sort -u \t\t| xargs -r dpkg-query --search \t\t| cut -d: -f1 \t\t| sort -u \t\t| xargs -r apt-mark manual \t; \tapt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false; \t\tredis-cli --version; \tredis-server --version",
+          "system_commands": [
+            "set -eux; savedAptMark=\"$(apt-mark showmanual)\"; apt-get update; apt-get install -y --no-install-recommends ca-certificates wget dpkg-dev gcc libc6-dev libssl-dev make ; rm -rf /var/lib/apt/lists/*; wget -O redis.tar.gz \"$REDIS_DOWNLOAD_URL\"; echo \"$REDIS_DOWNLOAD_SHA *redis.tar.gz\" | sha256sum -c -; mkdir -p /usr/src/redis; tar -xzf redis.tar.gz -C /usr/src/redis --strip-components=1; rm redis.tar.gz; grep -E '^ *createBoolConfig[(]\"protected-mode\",.*, *1 *,.*[)],$' /usr/src/redis/src/config.c; sed -ri 's!^( *createBoolConfig[(]\"protected-mode\",.*, *)1( *,.*[)],)$!102!' /usr/src/redis/src/config.c; grep -E '^ *createBoolConfig[(]\"protected-mode\",.*, *0 *,.*[)],$' /usr/src/redis/src/config.c; gnuArch=\"$(dpkg-architecture --query DEB_BUILD_GNU_TYPE)\"; extraJemallocConfigureFlags=\"--build=$gnuArch\"; dpkgArch=\"$(dpkg --print-architecture)\"; case \"${dpkgArch##*-}\" in amd64 | i386 | x32) extraJemallocConfigureFlags=\"$extraJemallocConfigureFlags --with-lg-page=12\" ;; *) extraJemallocConfigureFlags=\"$extraJemallocConfigureFlags --with-lg-page=16\" ;; esac; extraJemallocConfigureFlags=\"$extraJemallocConfigureFlags --with-lg-hugepage=21\"; grep -F 'cd jemalloc",
+            "./configure ' /usr/src/redis/deps/Makefile; sed -ri 's!cd jemalloc",
+            "./configure !&'\"$extraJemallocConfigureFlags\"' !' /usr/src/redis/deps/Makefile; grep -F \"cd jemalloc",
+            "./configure $extraJemallocConfigureFlags \" /usr/src/redis/deps/Makefile; export BUILD_TLS=yes; make -C /usr/src/redis -j \"$(nproc)\" all; make -C /usr/src/redis install; serverMd5=\"$(md5sum /usr/local/bin/redis-server | cut -d' ' -f1)\"; export serverMd5; find /usr/local/bin/redis* -maxdepth 0 -type f -not -name redis-server -exec sh -eux -c ' md5=\"$(md5sum \"$1\" | cut -d\" \" -f1)\"; test \"$md5\" = \"$serverMd5\"; ' -- '{}' ';' -exec ln -svfT 'redis-server' '{}' ';' ; rm -r /usr/src/redis; apt-mark auto '.*' > /dev/null; [ -z \"$savedAptMark\" ] || apt-mark manual $savedAptMark > /dev/null; find /usr/local -type f -executable -exec ldd '{}' ';' | awk '/=>/ { so = $(NF-1); if (index(so, \"/usr/local/\") == 1) { next }; gsub(\"^/(usr/)?\", \"\", so); printf \"*%sn\", so }' | sort -u | xargs -r dpkg-query --search | cut -d: -f1 | sort -u | xargs -r apt-mark manual ; apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false; redis-cli --version; redis-server --version"
+          ],
+          "comment": "buildkit.dockerfile.v0",
+          "is_buildkit_instruction": true,
+          "inst_set_time_bucket": "2026-04-22T04:30:00+03:00",
+          "inst_set_time_index": 1,
+          "inst_set_time_reverse_index": 1
+        },
+        {
+          "type": "RUN",
+          "time": "2026-04-22T01:34:52Z",
+          "is_nop": false,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 0,
+          "command_snippet": "RUN mkdir /data && \\\n\tchown redis:redis /dat...",
+          "command_all": "RUN mkdir /data && \\\n\tchown redis:redis /data",
+          "system_commands": [
+            "mkdir /data",
+            "chown redis:redis /data"
+          ],
+          "comment": "buildkit.dockerfile.v0",
+          "is_buildkit_instruction": true,
+          "inst_set_time_bucket": "2026-04-22T04:30:00+03:00",
+          "inst_set_time_index": 1,
+          "inst_set_time_reverse_index": 1
+        },
+        {
+          "type": "VOLUME",
+          "time": "2026-04-22T01:34:52Z",
+          "is_nop": false,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 0,
+          "params": "[/data]",
+          "command_snippet": "VOLUME [/data]",
+          "command_all": "VOLUME [/data]",
+          "comment": "buildkit.dockerfile.v0",
+          "is_buildkit_instruction": true,
+          "inst_set_time_bucket": "2026-04-22T04:30:00+03:00",
+          "inst_set_time_index": 1,
+          "inst_set_time_reverse_index": 1
+        },
+        {
+          "type": "WORKDIR",
+          "time": "2026-04-22T01:34:52Z",
+          "is_nop": false,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 0,
+          "params": "/data",
+          "command_snippet": "WORKDIR /data",
+          "command_all": "WORKDIR /data",
+          "system_commands": [
+            "mkdir -p /data"
+          ],
+          "comment": "buildkit.dockerfile.v0",
+          "is_buildkit_instruction": true,
+          "inst_set_time_bucket": "2026-04-22T04:30:00+03:00",
+          "inst_set_time_index": 1,
+          "inst_set_time_reverse_index": 1
+        },
+        {
+          "type": "COPY",
+          "time": "2026-04-22T01:34:52Z",
+          "is_nop": false,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 661,
+          "size_human": "661 B",
+          "params": "docker-entrypoint.sh /usr/local/bin/",
+          "command_snippet": "COPY docker-entrypoint.sh /usr/local/bin/",
+          "command_all": "COPY docker-entrypoint.sh /usr/local/bin/",
+          "comment": "buildkit.dockerfile.v0",
+          "is_buildkit_instruction": true,
+          "inst_set_time_bucket": "2026-04-22T04:30:00+03:00",
+          "inst_set_time_index": 1,
+          "inst_set_time_reverse_index": 1
+        },
+        {
+          "type": "ENTRYPOINT",
+          "time": "2026-04-22T01:34:52Z",
+          "is_nop": false,
+          "is_exec_form": true,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 0,
+          "params": "[\"docker-entrypoint.sh\"]\n",
+          "command_snippet": "ENTRYPOINT [\"docker-entrypoint.sh\"]\n",
+          "command_all": "ENTRYPOINT [\"docker-entrypoint.sh\"]\n",
+          "comment": "buildkit.dockerfile.v0",
+          "is_buildkit_instruction": true,
+          "inst_set_time_bucket": "2026-04-22T04:30:00+03:00",
+          "inst_set_time_index": 1,
+          "inst_set_time_reverse_index": 1
+        },
+        {
+          "type": "EXPOSE",
+          "time": "2026-04-22T01:34:52Z",
+          "is_nop": false,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 0,
+          "params": "6379/tcp",
+          "command_snippet": "EXPOSE 6379/tcp",
+          "command_all": "EXPOSE 6379/tcp",
+          "comment": "buildkit.dockerfile.v0",
+          "is_buildkit_instruction": true,
+          "inst_set_time_bucket": "2026-04-22T04:30:00+03:00",
+          "inst_set_time_index": 1,
+          "inst_set_time_reverse_index": 1
+        },
+        {
+          "type": "CMD",
+          "time": "2026-04-22T01:34:52Z",
+          "is_last_instruction": true,
+          "is_nop": false,
+          "is_exec_form": true,
+          "local_image_exists": true,
+          "layer_index": 0,
+          "size": 0,
+          "params": "[\"redis-server\"]\n",
+          "command_snippet": "CMD [\"redis-server\"]\n",
+          "command_all": "CMD [\"redis-server\"]\n",
+          "comment": "buildkit.dockerfile.v0",
+          "raw_tags": [
+            "redis:7-bookworm"
+          ],
+          "is_buildkit_instruction": true,
+          "inst_set_time_bucket": "2026-04-22T04:30:00+03:00",
+          "inst_set_time_index": 1,
+          "inst_set_time_reverse_index": 1
+        }
+      ]
+    },
+    {
+      "is_top_image": true,
+      "id": "sha256:7fa9783c8daaec17dac94539b4459088511520b91d4e23b38168e311e41288a2",
+      "full_name": "redis:7-alpine-secured",
+      "repo_name": "redis",
+      "version_tag": "7-alpine-secured",
+      "raw_tags": [
+        "redis:7-alpine-secured",
+        "redis:7-bookworm-tmp"
+      ],
+      "create_time": "2026-05-04T21:12:56Z",
+      "new_size": 0,
+      "new_size_human": "0 B",
+      "base_image_id": "sha256:7ceda270a3137de18c0b3aff75fa0002faa1c2a87e2b25e86978a1c3f20b3b78",
+      "instructions": [
+        {
+          "type": "RUN",
+          "time": "2026-05-04T21:12:55Z",
+          "is_nop": false,
+          "local_image_exists": true,
+          "intermediate_image_id": "sha256:f56a9370bc189f03979375cf0f7eb241643ff2ff2afeaf8bf77b10b9c1caa5f5",
+          "layer_index": 0,
+          "size": 0,
+          "command_snippet": "RUN mkdir -p /data && \\\n\tchown -R redis:redi...",
+          "command_all": "RUN mkdir -p /data && \\\n\tchown -R redis:redis /data",
+          "system_commands": [
+            "mkdir -p /data",
+            "chown -R redis:redis /data"
+          ],
+          "inst_set_time_bucket": "2026-05-05T00:00:00+03:00",
+          "inst_set_time_index": 2,
+          "inst_set_time_reverse_index": 0
+        },
+        {
+          "type": "RUN",
+          "time": "2026-05-04T21:12:56Z",
+          "is_nop": false,
+          "local_image_exists": true,
+          "intermediate_image_id": "sha256:867907e2645714375a9239d9e95b1397cc13802a48fa6cd8c8580eb2a94a2184",
+          "layer_index": 0,
+          "size": 0,
+          "command_snippet": "RUN rm -f /usr/local/bin/gosu",
+          "command_all": "RUN rm -f /usr/local/bin/gosu",
+          "system_commands": [
+            "rm -f /usr/local/bin/gosu"
+          ],
+          "inst_set_time_bucket": "2026-05-05T00:00:00+03:00",
+          "inst_set_time_index": 2,
+          "inst_set_time_reverse_index": 0
+        },
+        {
+          "type": "USER",
+          "time": "2026-05-04T21:12:56Z",
+          "is_last_instruction": true,
+          "is_nop": true,
+          "local_image_exists": true,
+          "layer_index": 0,
+          "size": 0,
+          "params": "redis",
+          "command_snippet": "USER redis",
+          "command_all": "USER redis",
+          "raw_tags": [
+            "redis:7-alpine-secured",
+            "redis:7-bookworm-tmp"
+          ],
+          "inst_set_time_bucket": "2026-05-05T00:00:00+03:00",
+          "inst_set_time_index": 2,
+          "inst_set_time_reverse_index": 0
+        }
+      ]
+    }
+  ],
+  "image_created": true,
+  "image_build_engine": "internal"
+}

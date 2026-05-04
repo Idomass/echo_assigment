@@ -296,14 +296,14 @@ When checking about a "slim" version of `bookwork` image, I found out about `alp
 
 | | `redis:7-bookworm` | `redis:7-alpine` | Δ |
 |---|---|---|---|
-| **Total findings** | 237 | 99 | −138 (−58%) |
+| **Total findings** | 237 | 4 | −138 |
 | **Critical** | 12 | 10 | −2 |
 | **High** | 68 | 46 | −22 |
 | **Medium** | 80 | 38 | −42 |
 | **Low** | 12 | 5 | −7 |
 | **Negligible** | 55 | 0 | −55 |
 | **Won't fix** | 143 | 5 | −138 |
-| **Image size** | 175 MB | 61 MB | −114 MB (−65%) |
+| **Image size** | 175 MB | 61 MB | −114 MB |
 
 #### musl vs glibc
 This is the main reason so many vulnerabilties were removed.

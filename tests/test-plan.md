@@ -1,7 +1,7 @@
 # Task
 Implement a layered test suite for a modified redis container.
 The tests should cover changes made to the container, and functional tests to the redis app and database.
-The results should compare between `redis:7-bookworm` and `redis:7-alpine-secured`.
+The results should compare between `redis:7-bookworm` and `redis:7-bookworm-secured`.
 
 ## Layer 1 - Container structure tests (dgoss)
 Assert changes that were implemented in the dockerfile were actaully made.
