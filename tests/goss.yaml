@@ -1,0 +1,15 @@
+file:
+  /usr/local/bin/gosu:
+    exists: false
+  /data:
+    exists: true
+    owner: redis
+    group: redis
+
+port:
+  tcp:6379:
+    listening: true
+
+process:
+  redis-server:
+    running: true
