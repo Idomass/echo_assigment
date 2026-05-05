@@ -41,4 +41,5 @@ Apparently it has to do something with the fact that "distro context" files were
 I have realized that my "working properly" definition mainly discussed the redis binary, and did not consider the "user" of the container, that might want to connect, and some operations with the files, install packages, debug it dynamically.
 In short, I overdid it, admin functions are broken.
 
-###
+## Rebuilding `gosu` from source
+Apparently as easy as removing it, simple lines in the Dockerfile did not breaked the binary and fixed the issues.
